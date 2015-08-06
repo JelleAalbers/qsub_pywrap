@@ -13,7 +13,7 @@ Execute python functions as qsub jobs.
         
     jobname, output_pickle = qsubwrap(find_answer, queue='yourqueue')
 
-When the job is done, the result will be in a pickle with filename output_pickle. You can check the status ofExtra args/kwargs passed to qsubwrapped will be passed to your function. (except if they're one of the options to qsubwrap, such as verbose, pickle_dir, messages_dir, ... see docstring).
+When the job is done, the result will be in a pickle with filename output_pickle. Extra args/kwargs passed to qsubwrap will be passed to your function. (except if they're one of the options to qsubwrap, such as verbose, pickle_dir, messages_dir, ... see docstring).
 
 **Mapreduce functionality**::
 
@@ -28,7 +28,7 @@ When the job is done, the result will be in a pickle with filename output_pickle
                                                  reducer=combine_results)
 
 
-Each call to mapper and the final call to reducer will happen in a separate job. The reducer job only starts when all of the mapper jobs are finished, and the results will be written to reducer_pickle.
+Each call to mapper and the final call to reducer will happen in a separate job. The reducer job only starts when all of the mapper jobs are finished, and the results will be written to reducer_pickle. See the docstring for the various options of qsub_mapreduce, which e.g. allow you to pass extra arguments to the mapper and reducer.
     
     
 Alternatives
