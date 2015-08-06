@@ -17,6 +17,8 @@ When the job is done, the result will be in a pickle with filename output_pickle
 
 **Mapreduce functionality**::
 
+    from qsub_pywrap import qsub_mapreduce
+
     def find_partial_answer(i):
         return (i + 1.5)**2
 
@@ -25,7 +27,8 @@ When the job is done, the result will be in a pickle with filename output_pickle
 
     reducer_job, reducer_pickle = qsub_mapreduce(mapper=find_partial_answer,
                                                  inputs=range(4),
-                                                 reducer=combine_results)
+                                                 reducer=combine_results,
+                                                 queue='yourqueue')
 
 
 Each call to mapper and the final call to reducer will happen in a separate job. The reducer job only starts when all of the mapper jobs are finished, and the results will be written to reducer_pickle. See the docstring for the various options of qsub_mapreduce, which e.g. allow you to pass extra arguments to the mapper and reducer.
