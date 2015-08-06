@@ -4,7 +4,8 @@ qsub_pywrap
 
 Execute python functions as qsub jobs.
 
-Simplest example::
+**Simple job submission**::
+
     from qsub_pywrap import qsubwrap
 
     def find_answer():
@@ -14,7 +15,7 @@ Simplest example::
 
 When the job is done, the result will be in a pickle with filename output_pickle. You can check the status ofExtra args/kwargs passed to qsubwrapped will be passed to your function. (except if they're one of the options to qsubwrap, such as verbose, pickle_dir, messages_dir, ... see docstring).
 
-Mapreduce-like example::
+**Mapreduce functionality**::
 
     def find_partial_answer(i):
         return (i + 1.5)**2
@@ -26,6 +27,9 @@ Mapreduce-like example::
                                                  inputs=range(4),
                                                  reducer=combine_results)
 
+
+Each call to mapper and the final call to reducer will happen in a separate job. The reducer job only starts when all of the mapper jobs are finished, and the results will be written to reducer_pickle.
+    
     
 Alternatives
 ------------
